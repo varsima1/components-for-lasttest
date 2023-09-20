@@ -1,10 +1,18 @@
-#navBar{
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+.search-icon,.HLogin,.HSignup{
+    background-color: transparent;
+    border: 0px;
+    color: white;
     margin: 15px;
-    font-size: large;
-    text-decoration: none;
-
-}
-.text-light{
     text-decoration: none;
 }
-
+.logo{
+    background-image: url(../../image/logo.png);
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 40px;
+}

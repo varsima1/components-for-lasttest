@@ -1,140 +1,82 @@
-// import React, { useState } from 'react';
-// import { Navbar, Container, InputGroup, FormControl, Button } from 'react-bootstrap';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faSearch, faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
-// import Darkmode from './DarkMode';
-// import { Link } from "react-router-dom";
 
-// export const Header = () => {
-//   const [showSearchBar, setShowSearchBar] = useState(false);
-
-//   const toggleSearchBar = () => {
-//     setShowSearchBar(!showSearchBar);
-//   };
-
-//   return (
-//     <header>
-//       <Navbar className="navbar navbar-expand navbar-light bg-primary">
-//         <Darkmode />
-//         <Container>
-//           <Navbar.Brand href="#home" className='text-light'>
-//             <FontAwesomeIcon icon={faStar} size="lg" />
-//           </Navbar.Brand>
-//           <Navbar.Toggle />
-//           <Navbar.Collapse className="justify-content-end">
-//       <Navbar bg="primary" variant="dark" className={`searchBar ${showSearchBar ? 'active' : ''}`}>
-//         <Container>
-//           <InputGroup>
-//             {showSearchBar ? (
-//               <>
-//                 <FormControl
-//                   placeholder="Search..."
-//                   aria-label="Search"
-//                 />
-//                 <Button variant="outline-light">
-//                   <FontAwesomeIcon icon={faSearch} />
-//                 </Button>
-//                 <Button  variant="outline-light" onClick={toggleSearchBar}>
-//                   <FontAwesomeIcon icon={faArrowLeft} />
-//                 </Button>
-//               </>
-//             ) : (
-//               <Button variant="outline-light" onClick={toggleSearchBar}>
-//                 <FontAwesomeIcon icon={faSearch} />
-//               </Button>
-//             )}
-//           </InputGroup>
-//         </Container>
-//       </Navbar>
-//             <Navbar.Text className='text-light'>
-//               Signed in as: <a href="#login" className='text-light'>Mark Otto</a>
-//             </Navbar.Text>
-//           </Navbar.Collapse>
-//         </Container>
-//       </Navbar>
-//     </header>
-//   )
-// }
-import React, { useState } from 'react';
-import { Navbar, Container, InputGroup, FormControl, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Navbar, Container, Nav, Form, FormControl, Button, InputGroup } from 'react-bootstrap'; // Import InputGroup
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faArrowLeft, faStar } from '@fortawesome/free-solid-svg-icons';
-import Darkmode from './DarkMode';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons'; // Import FontAwesome icons
 import './scss/header/header.scss';
+import DarkMode from './DarkMode'
 
-export const Header = () => {
-  const [showSearchBar, setShowSearchBar] = useState(false);
+function Header() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1000);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu);
+  };
 
   const toggleSearchBar = () => {
-    setShowSearchBar(!showSearchBar);
+    setIsSearchActive(!isSearchActive);
   };
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 1000);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <header>
-      <Navbar className="navbar navbar-expand navbar-light bg-primary">
-        <Darkmode />
-        <Container className="header-container">
-          <div className="col-sm">
-            <Navbar.Brand href="#home" className='text-light'>
-              <FontAwesomeIcon icon={faStar} size="lg" />
-              <img src="./image/logo.png" alt="logo" class="logo" />
-            </Navbar.Brand>
-            <Navbar.Text className='text-light' id='navBar'>
-              <Link to="/market" className='text-light'>Market</Link>
-            </Navbar.Text>
-            <Navbar.Text className='text-light'  id='navBar'>
-              <Link to="/apply" className='text-light'>Apply</Link>
-            </Navbar.Text>
-            <Navbar.Text className='text-light'  id='navBar'>
-              <Link to="/scroll" className='text-light'>Scroll</Link>
-            </Navbar.Text>
-            <Navbar.Text className='text-light'  id='navBar'>
-              <Link to="/message" className='text-light'>Message</Link>
-            </Navbar.Text>
-          </div>
-          <div className="right-section">
-            <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar bg="primary" variant="dark" className={`searchBar ${showSearchBar ? 'active' : ''}`}>
-                <Container>
-                  <InputGroup >
-                    {showSearchBar ? (
-                      <>
-                        <FormControl
-                          placeholder="Search..."
-                          aria-label="Search"
-                        />
-                        <Button variant="outline-light">
-                          <FontAwesomeIcon icon={faSearch} />
-                        </Button>
-                        <Button variant="outline-light" onClick={toggleSearchBar}>
-                          <FontAwesomeIcon icon={faArrowLeft} />
-                        </Button>
-                      </>
-                    ) : (
-                      <Button variant="outline-light" onClick={toggleSearchBar}>
-                        <FontAwesomeIcon icon={faSearch} />
-                      </Button>
-                    )}
-                  </InputGroup>
-                </Container>
-              </Navbar>
-            </Navbar.Collapse>
-          </div>
-          <Button
-            class="navbar-toggler text-warning"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarColor01"
-            aria-controls="navbarColor01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </Button>
+      <Navbar expand="lg" bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand as={Link} to="/" className='Logo'><h1 className='logo'></h1></Navbar.Brand>
+        <DarkMode/>
+          {isMobile ? (
+            <Navbar.Toggle
+              onClick={toggleMobileMenu}
+              aria-controls="responsive-navbar-nav"
+            >
+              <FontAwesomeIcon icon={faBars} />
+            </Navbar.Toggle>
+          ) : null}
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className={`mr-auto ${isMobile && showMobileMenu ? 'mobile-menu' : ''}`}>
+              <Nav.Link as={Link} to="/">About</Nav.Link>
+              <Nav.Link as={Link} to="/market">Market</Nav.Link>
+              <Nav.Link as={Link} to="/apply">Apply</Nav.Link>
+              <Nav.Link as={Link} to="/scroll">Scroll</Nav.Link>
+              <Nav.Link as={Link} to="/message">Message</Nav.Link>
+            </Nav>
+      </Navbar.Collapse>
+
+          <div className="search-bar">
+      <button className="search-icon" onClick={toggleSearchBar}>
+        <FontAwesomeIcon icon={faSearch} style={{height:'20px'}}/>
+      </button>
+      {isSearchActive && (
+        <input
+        type="text"
+        className="search-input"
+        placeholder="Search..."
+        />
+        )}
+    </div>
+    <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className={`mr-auto ${isMobile && showMobileMenu ? 'mobile-menu' : ''}`}>
+        <Link className='HLogin' to="/login">Login</Link>
+        <Link className='HSignup' to="/signup">Signup</Link>
+        </Nav>
+        </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>
   );
-};
+}
+
+export default Header;

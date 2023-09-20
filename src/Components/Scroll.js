@@ -1,4 +1,6 @@
 import React from 'react'
+import withLoader from './loader/withLoader';
+
 
 function Scroll() {
   return (
@@ -6,4 +8,4 @@ function Scroll() {
   )
 }
 
-export default Scroll
+export default withLoader(Scroll)

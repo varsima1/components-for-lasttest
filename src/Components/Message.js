@@ -1,4 +1,6 @@
 import React from 'react'
+import withLoader from './loader/withLoader';
+
 
 function Message() {
   return (
@@ -6,4 +8,4 @@ function Message() {
   )
 }
 
-export default Message
+export default withLoader(Message)
