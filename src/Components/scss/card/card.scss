@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90.40vh; /* Centers content both vertically and horizontally */
+    height: 90.40vh;
   }
   
 
 .Mcard {
     width: 300px;
-    height: 450px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,6 +25,8 @@
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;
+    background-color: transparent;
+    color: #ccc;
     margin-bottom: 10px;
     position: relative;
   
@@ -55,6 +57,8 @@
   .Mprice {
     width: 100%;
     margin-bottom: 10px;
+    background-color: transparent;
+    color: #ccc;
   
     input[type='text'],
     textarea {

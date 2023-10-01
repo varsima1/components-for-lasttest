@@ -16,7 +16,7 @@ function Apply() {
   return (
     <div>
       <div className="MarketContainer">
-        <Link to='/Acard' className='MaddCard'>
+        <Link to='/Acard' className='MaddACard'>
           <FontAwesomeIcon icon={faPlus} />
         </Link>
         <ul>

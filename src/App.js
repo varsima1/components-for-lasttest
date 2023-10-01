@@ -1,9 +1,12 @@
 import './App.css';
 import ArrowToUp from './Components/ScrollToTopButton';
-import  Header from './Components/Header';
 import { Footer } from './Components/Footer';
 import Router from './Router';
-import RouterAuth from './RouterAuth';
+import withLoader from './Components/loader/withLoader';
+import Header from './Components/Header';
+
+
+
 
 
 function App() {
@@ -12,10 +15,9 @@ function App() {
       <Header/>
     <ArrowToUp/>
       <Router/>
-      <RouterAuth/>
     <Footer/>
     </div>
   );
 }
 
-export default App;
+export default withLoader(App);

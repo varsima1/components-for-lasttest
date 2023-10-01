@@ -1,10 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react';
 import withLoader from './loader/withLoader';
+
 
 
 function Scroll() {
   return (
-    <div>Scroll</div>
+    <div>
+      scroll
+    </div>
   )
 }
 

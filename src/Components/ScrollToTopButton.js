@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './scss/ScrollToTopButton.scss'
 import {BsArrowUpCircleFill} from 'react-icons/bs'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleUp } from '@fortawesome/free-solid-svg-icons';
 
 
 const ScrollToTopButton = () => {
@@ -30,7 +32,7 @@ const ScrollToTopButton = () => {
 
   return (
     <div className={`scroll-to-top-button ${isVisible ? 'visible' : ''}`}>
-      <button onClick={scrollToTop} className='toup'><BsArrowUpCircleFill style={{width:'30px',height:'30px'}}/></button>
+      <button onClick={scrollToTop} className='toup'><FontAwesomeIcon icon={faCircleUp} style={{width:'30px',height:'30px', color: "#007bff" }} /></button>
     </div>
   );
 };

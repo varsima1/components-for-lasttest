@@ -19,7 +19,7 @@
     margin: 5px;
 
 }
-.Esame{
+.Esame,.Spassword{
     background: transparent ;
     border: 1px solid #dddfe2;
     color: #ccc;
@@ -46,19 +46,24 @@
     margin: 5px 15px;
     cursor: pointer;
 }
+.Sred{
+    color: red;
+}
+
 @media (max-width:500px){
     .Ssame{
         width:150px;
     }
-    .Esame{
+    .Esame,.Spassword{
         width: 310px;
+    }
+    .Spassword{
+        margin-left: -0px;
     }
     .Sbutton{
         width: 310px;
     }
-}
-@media (max-width:370px){
-    .Esame,.Ssame{
-        margin-left: 20px;
+    .password-toggle-icon{
+        margin-left: -10px;
     }
 }
