@@ -24,4 +24,3 @@ app.listen(PORT, async () => {
   await generateInitialCards();
   await generateInitialUsers();
 });
-

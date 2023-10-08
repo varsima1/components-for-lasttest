@@ -180,7 +180,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav, DropdownButton, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch,faUser} from '@fortawesome/free-solid-svg-icons';
 import './scss/header/header.scss';
 import DarkMode from './DarkMode';
 import { useAuth } from './AuthContext';
@@ -196,7 +196,6 @@ function Header() {
     logout();
     window.location.href = '/login';
   };
-
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
@@ -259,17 +258,15 @@ function Header() {
     id="user-menu"
     title={
       <div style={{ display: "flex", alignItems: "center" }}>
-        <img
-          src='./image/avatar.png'
-          alt="Profile"
-        />
+       <FontAwesomeIcon icon={faUser} style={{marginLeft:'3px',}} />
       </div>
     }
     show={isUserMenuOpen}
     onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
   >
-    <Dropdown.Item href="/profile">My Profile</Dropdown.Item>
-    <Dropdown.Item href="/settings">Settings</Dropdown.Item>
+    
+    <Nav.Link as={Link} to={'/profile'} className='text-dark' style={{marginLeft:'10px'}}>My Profile</Nav.Link>
+    <Nav.Link as={Link} to={'/settings'} className='text-dark' style={{marginLeft:'10px'}}>Settings</Nav.Link>
     <Dropdown.Divider />
     <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
   </DropdownButton>

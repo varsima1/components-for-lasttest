@@ -6,6 +6,7 @@ import './scss/Signup/Signup.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState('');
@@ -22,6 +23,11 @@ function Signup() {
   const [zipCode, setZipCode] = useState('');
   const [errors, setErrors] = useState('');
   const navigate = useNavigate();
+  const [isSeller, setIsSeller] = useState(false);
+
+  const handleSellerCheckboxChange = (event) => {
+    setIsSeller(event.target.checked);
+  };
 
   const handleImageChange = (event) => {
     setImageURL(event.target.value);
@@ -56,12 +62,13 @@ function Signup() {
         street,
         houseNumber,
         zip: zipCode
-      }
+      },
+      isSeller
     };
 
     try {
       const response = await axios.post("http://localhost:8181/users", newUser);
-      console.log(response.data);
+      console.log(`User successfully created`);
       setErrors({});
       navigate('/login');
     } catch (error) {
@@ -72,7 +79,6 @@ function Signup() {
       }
     }
   };
-
   return (
     <form className='Scontainer' onSubmit={onSubmit}>
       <input type='text' placeholder='name' className='Ssame' required onChange={(e) => setName(e.target.value)} />
@@ -121,7 +127,11 @@ function Signup() {
       <div className='Sgrid'>
         <input type="text" placeholder="Zip Code" className="Esame" value={zipCode} onChange={(e) => setZipCode(e.target.value)} required /><br/>
         <p className='Sred' style={{display: errors['address.zip'] ? 'block' : 'none'}}>{errors['address.zip']}</p>
-      </div><br/>
+      </div>
+      <label>
+          <input type='checkbox' checked={isSeller} onChange={handleSellerCheckboxChange} />
+          Are you a seller?
+        </label><br/>
       <button className='Sbutton' type='submit'>Signup</button>
     </form>
   );

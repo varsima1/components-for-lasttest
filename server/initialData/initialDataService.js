@@ -16,7 +16,7 @@ const generateInitialCards = async () => {
       const { error } = validateCard(card);
       if (error) throw new Error(`Joi Error: ${error.details[0].message}`);
 
-      const normalizedCard = await normalizeCard(card, userId);
+      const normalizedCard = await normalizeCard(card, );
       const cardToDB = new Card(normalizedCard);
       await cardToDB.save();
       console.log(

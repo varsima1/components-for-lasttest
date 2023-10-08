@@ -5,10 +5,6 @@ import Router from './Router';
 import withLoader from './Components/loader/withLoader';
 import Header from './Components/Header';
 
-
-
-
-
 function App() {
   return (
     <div className="App">
