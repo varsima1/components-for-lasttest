@@ -49,7 +49,7 @@ const registerValidation = user => {
         zip: Joi.number(),
       })
       .required(),
-    isBusiness: Joi.boolean().allow(""),
+    isSeller: Joi.boolean().allow(""),
     isAdmin: Joi.boolean().allow(""),
   });
   return schema.validate(user, {

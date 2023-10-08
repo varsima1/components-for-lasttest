@@ -83,7 +83,7 @@ const schema = new mongoose.Schema({
   image: Image,
  address: Address,
   isAdmin: { type: Boolean, default: false },
-  isBusiness: { type: Boolean, default: false },
+  isSeller: { type: Boolean, default: false },
   createdAt: {
     type: Date,
     default: Date.now,

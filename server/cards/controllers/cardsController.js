@@ -21,7 +21,7 @@ const createCard = async (req, res) => {
     const card = req.body;
     const user = req.user;
 
-    if (!user.isBusiness)
+    if (!user.isSeller)
       throw new Error(
         "You must be a business type user in order to create a new business card"
       );

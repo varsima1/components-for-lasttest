@@ -103,7 +103,7 @@
         "houseNumber": 5,
         "zip": 0
       },
-      "isBusiness": true
+      "isSeller": true
     },
     {
       "name": {
@@ -125,7 +125,7 @@
         "houseNumber": 5,
         "zip": 0
       },
-      "isBusiness": true,
+      "isSeller": true,
       "isAdmin": true
     }
   ]

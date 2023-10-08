@@ -93,7 +93,6 @@ function Login() {
         password,
       });
 
-      // Assuming the response.data contains user profile data
       login(response.data);
       navigate('/');
     } catch (error) {
